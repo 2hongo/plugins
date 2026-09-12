@@ -1,0 +1,17 @@
+{
+  "name": "2hongo",
+  "owner": {
+    "name": "Two Lexis Co., Ltd.",
+    "url": "https://www.2hongo.com"
+  },
+  "description": "Japanese learning tools from 2hongo",
+  "plugins": [
+    {
+      "name": "2hongo",
+      "source": "./plugins/2hongo",
+      "description": "Teach and practice Japanese, grounded in 2hongo's dictionary and grammar reference.",
+      "category": "education",
+      "tags": ["japanese", "language-learning", "dictionary"]
+    }
+  ]
+}

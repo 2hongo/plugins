@@ -1,0 +1,14 @@
+{
+  "name": "2hongo",
+  "displayName": "2hongo",
+  "version": "0.1.0",
+  "description": "Teach and practice Japanese, grounded in 2hongo's dictionary, grammar reference, and the connected learner's study record. Search trusted content, derive progress insights, assess JLPT inventory coverage, select personalized practice, record consented usage evidence, and synchronize results.",
+  "author": {
+    "name": "Two Lexis Co., Ltd.",
+    "url": "https://www.2hongo.com"
+  },
+  "homepage": "https://www.2hongo.com",
+  "repository": "https://github.com/2hongo/plugins",
+  "license": "MIT",
+  "keywords": ["japanese", "language-learning", "dictionary", "jlpt", "vocabulary"]
+}

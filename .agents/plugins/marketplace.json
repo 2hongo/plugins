@@ -1,0 +1,17 @@
+{
+  "name": "2hongo",
+  "interface": {
+    "displayName": "2hongo"
+  },
+  "plugins": [
+    {
+      "name": "2hongo",
+      "source": { "source": "local", "path": "./plugins/2hongo" },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Education"
+    }
+  ]
+}

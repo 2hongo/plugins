@@ -1,0 +1,30 @@
+{
+  "name": "2hongo",
+  "version": "0.1.0",
+  "description": "Search 2hongo's authenticated Japanese reference, play word recordings, and use the connected learner's study record for personalized practice.",
+  "author": {
+    "name": "2hongo"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "2hongo",
+    "shortDescription": "Trusted Japanese reference and personalized practice from 2hongo.",
+    "longDescription": "Search 2hongo's dictionary and grammar reference, retrieve its stored word and pattern details, and play its pronunciation recordings after connecting a free 2hongo account. For the signed-in learner it can also read their review workload, study plan, and learner profile; eligible accounts can derive recent progress patterns, have 2hongo select personalized practice with authored questions, check a text's readability against their record, tailor Japanese written for them to what they are learning, assess JLPT inventory coverage without predicting an exam result, and—with explicit consent—record structured correct-use or error signals without storing the learner's sentence; and every account can synchronize completed practice results. Generic Japanese teaching remains an account-free skill and is identified separately from 2hongo data.",
+    "developerName": "2hongo",
+    "category": "Education",
+    "capabilities": [
+      "Dictionary lookup",
+      "Grammar reference",
+      "Pronunciation audio",
+      "Saved words and review progress",
+      "Personalized practice selection",
+      "Reading-level checks",
+      "Level-matched stories and examples",
+      "Progress insights",
+      "JLPT coverage",
+      "Consented usage evidence",
+      "Synchronized practice results"
+    ],
+    "defaultPrompt": "Search 2hongo for a Japanese word and show its stored details or pronunciation audio."
+  }
+}
