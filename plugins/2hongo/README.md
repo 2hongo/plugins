@@ -10,8 +10,8 @@ JLPT level, and frequency come from a source rather than from recall.
 ## Install
 
 ```bash
-claude plugin marketplace add anthropics/claude-plugins-community
-claude plugin install 2hongo@claude-community
+claude plugin marketplace add 2hongo/plugins
+claude plugin install 2hongo@twolexis
 ```
 
 Prefer no plugin? The same tools are available as a custom remote connector — add
@@ -24,10 +24,11 @@ The teaching skill works immediately, with no account.
 The dictionary tools require a **free** 2hongo account. On the first tool call Claude opens the
 2hongo authorization page; sign in or create an account, approve the connection, and Claude
 resumes what you asked for. There is no subscription step and no upgrade prompt in that flow —
-existing Premium and Pro subscriptions are simply recognized.
+an existing paid subscription is simply recognized.
 
 The connection uses OAuth 2.1 with PKCE. Access tokens are short-lived and limited to the
-permissions you approved; disconnecting the plugin revokes them immediately. 2hongo never receives
+permissions you approved. To end the connection, revoke it on 2hongo under Account Settings >
+Sessions > Connected AI assistants; access stops on the next request. 2hongo never receives
 your Claude conversation — only the specific word or query a tool call carries.
 
 ## Try it
@@ -46,52 +47,52 @@ I wrote 「私は日本語を勉強しました三年間」. Correct it and expl
 
 ## Tools
 
-| Tool                      | What it returns                                                                                   |
-| ------------------------- | ------------------------------------------------------------------------------------------------- |
-| `search_words`            | Dictionary matches for a spelling or reading, as stable slugs                                     |
-| `search_by_meaning`       | Entries found from a description of the meaning, in any supported language                        |
-| `get_word`                | One entry: readings, localized meanings, curated examples, relationships, JLPT and frequency data |
-| `get_word_audio`          | The recording, plus a link to the word's page on 2hongo                                           |
-| `search_grammar`          | Grammar patterns matching a pattern form or a meaning                                             |
-| `get_grammar`             | One pattern's authored explanation, formation, register, and worked examples                      |
-| `get_review_summary`      | Words due today, reviews done today, and the current streak                                       |
-| `get_study_plan`          | The current 2hongo study plan and which items are done                                            |
-| `get_learner_profile`     | Your level and goal settings, plus the stage 2hongo paces you at and your progress through it     |
-| `get_practice_set`        | Due, weak, and recently started items from your record, with authored questions where available   |
-| `check_reading_fit`       | How much of a text you have already met on 2hongo, and its words and grammar worth learning       |
-| `get_content_brief`       | Words and grammar you are learning for Claude to write into new Japanese, and the level to use    |
-| `get_progress_insights`   | Recent activity, vocabulary accuracy trends, learning signals, and a concrete next step           |
-| `get_jlpt_readiness`      | Coverage of a JLPT level across 2hongo grammar, kanji, vocabulary, basics, and prerequisites      |
-| `record_usage_evidence`   | A structured correct-use or error signal for a word or grammar sense the learner produced         |
-| `save_word`               | Saves a word into the notebook and its review schedule                                            |
-| `update_learning_state`   | Marks a word or grammar sense as learning or known                                                |
-| `submit_practice_results` | Grades authored answers and records due-item results, including misses                            |
+| Tool                      | What it returns                                                                                                                               |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `search_words`            | Dictionary matches for a spelling or reading, as stable slugs                                                                                 |
+| `search_by_meaning`       | Entries found from a description of the meaning, in any supported language                                                                    |
+| `get_word`                | One entry: readings, localized meanings, curated examples, relationships, JLPT and frequency data, and a link to hear its recording on 2hongo |
+| `search_grammar`          | Grammar patterns matching a pattern form or a meaning                                                                                         |
+| `get_grammar`             | One pattern's authored explanation, formation, register, and worked examples                                                                  |
+| `get_review_summary`      | Words due today, reviews done today, and the current streak                                                                                   |
+| `get_study_plan`          | The current 2hongo study plan and which items are done                                                                                        |
+| `get_learner_profile`     | Your editable learning profile, settings, pacing stage, and progress                                                                          |
+| `get_practice_set`        | Due, weak, and recently started items from your record, with authored questions where available                                               |
+| `get_content_brief`       | Words and grammar you are learning for Claude to write into new Japanese, and the level to use                                                |
+| `get_progress_insights`   | Recent activity, vocabulary accuracy trends, learning signals, and a concrete next step                                                       |
+| `get_jlpt_readiness`      | Coverage of a JLPT level across 2hongo grammar, kanji, vocabulary, basics, and prerequisites                                                  |
+| `record_usage_evidence`   | A structured correct-use or error signal for a word or grammar sense the learner produced                                                     |
+| `update_learning_state`   | Saves a word or grammar sense to your reviews, or marks it known                                                                              |
+| `update_learner_settings` | Updates your declared level, goal, or daily study time after you confirm the values                                                           |
+| `update_learning_profile` | Replaces the learning profile after you approve the complete proposed text                                                                    |
+| `submit_practice_results` | Grades authored answers and records due-item results, including misses                                                                        |
 
-The last twelve read or change your 2hongo account, so Claude asks for those permissions separately
+The account tools read or change your 2hongo account, so Claude asks for those permissions separately
 when you connect — a connection that only searches the dictionary never gets them.
 
-`check_reading_fit` never sends your text to 2hongo. Claude sends only the dictionary forms of its
-words, their readings and counts, and the names of the grammar it noticed, and 2hongo keeps none of
-them. Likewise, `get_content_brief` is told only whether Claude is writing a story, a dialogue,
+`get_content_brief` is told only whether Claude is writing a story, a dialogue,
 examples, or an explanation — never what it is about. Claude writes the text; 2hongo supplies what
 to weave in.
 
-Vocabulary and grammar follow the same tiers as the website: a free account reads N5 and N4 in full
-plus a set of showcase patterns above that, and gets a preview — metadata, formation, meaning, one
-example — of the rest. Meaning search has a daily allowance. `get_learner_profile` returns your own
-settings on any account; the stage and progress it derives from your study record come with Premium
-and Pro. Personalized practice selection, reading checks, and writing briefs follow the same
+The tools follow the same plans as the website. Every account reads the dictionary and the full
+grammar reference at every JLPT level. Word audio, and recording study progress on grammar and kanji,
+cover N5 and kana on a free account and every level from Standard. Meaning search has a daily
+allowance that grows with the plan. `get_learner_profile` returns your own settings and editable
+learning profile on any account; the stage and progress it derives from your study record come with
+Plus and Max. Personalized practice selection, reading checks, and writing briefs follow the same
 boundary. Progress insights follow it too, and explicitly leave accuracy unavailable where 2hongo
 does not yet keep per-review history. JLPT readiness follows the same boundary and reports only
 coverage of 2hongo's inventory — never a test score or pass prediction. Submitting practice results
-is available to every account tier. `record_usage_evidence` follows the personalization boundary. It
+is available on every plan. `record_usage_evidence` follows the personalization boundary. It
 stores only the word or grammar sense, result, optional issue category, day, and calling client —
 never the learner's sentence — after the learner is told. Every entry appears under Account Settings
-→ AI Evidence and can be deleted there. The tools say when you have hit one of those boundaries;
+→ Learning Profile → AI assistant activity and can be deleted there. Repeated mapped grammar evidence
+can update a checked Basics chapter and refresh an existing Sensei plan; it never moves an SRS schedule.
+The tools say when you have hit one of those boundaries;
 they never offer to sell you anything.
 
-Claude cannot play audio inline, so `get_word_audio` hands you a 2hongo word-page link to listen
-there. Everything else returns normally.
+Word recordings play on 2hongo: `get_word` links to the word's page when your plan includes its
+recording, and leaves the link out otherwise.
 
 ## Troubleshooting
 
@@ -115,6 +116,6 @@ MIT — see [LICENSE](./LICENSE).
 
 ---
 
-This repository is **generated**. It is mirrored from the 2hongo web repository by
-`pnpm plugin:sync`, so pull requests opened here are overwritten by the next sync. Please report
-issues through [2hongo.com/en/contact](https://www.2hongo.com/en/contact) instead.
+This repository is **generated**. It is projected from 2hongo's application repository by a sync
+script, so pull requests opened here are overwritten by the next sync. Please report issues through
+[2hongo.com/en/contact](https://www.2hongo.com/en/contact).

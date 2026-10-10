@@ -2,10 +2,10 @@
 
 Plugin packages for [2hongo](https://www.2hongo.com), a Japanese learning app. One package, two hosts.
 
-| Host                | Manifest                                    | Install                                         |
-| ------------------- | ------------------------------------------- | ----------------------------------------------- |
-| Claude Code, Cowork | `plugins/2hongo/.claude-plugin/plugin.json` | `/plugin marketplace add 2hongo/plugins`        |
-| Codex               | `plugins/2hongo/.codex-plugin/plugin.json`  | add this repo as a marketplace, then `/plugins` |
+| Host                | Manifest                                    | Install                                                                          |
+| ------------------- | ------------------------------------------- | -------------------------------------------------------------------------------- |
+| Claude Code, Cowork | `plugins/2hongo/.claude-plugin/plugin.json` | `/plugin marketplace add 2hongo/plugins`, then `/plugin install 2hongo@twolexis` |
+| Codex               | `plugins/2hongo/.codex-plugin/plugin.json`  | add this repo as a marketplace, then `/plugins`                                  |
 
 Both hosts load the same skill from `plugins/2hongo/skills/2hongo-sensei/` and the same remote MCP
 server at `https://www.2hongo.com/api/mcp`. The teaching skill needs no account; the dictionary tools
