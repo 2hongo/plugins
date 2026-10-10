@@ -66,6 +66,7 @@ I wrote 「私は日本語を勉強しました三年間」. Correct it and expl
 | `update_learner_settings` | Updates your declared level, goal, or daily study time after you confirm the values                                                           |
 | `update_learning_profile` | Replaces the learning profile after you approve the complete proposed text                                                                    |
 | `submit_practice_results` | Grades authored answers and records due-item results, including misses                                                                        |
+| `report_content`          | Sends an error you agree to report in a 2hongo question or word entry to the 2hongo team; changes nothing in your record                      |
 
 The account tools read or change your 2hongo account, so Claude asks for those permissions separately
 when you connect — a connection that only searches the dictionary never gets them.
