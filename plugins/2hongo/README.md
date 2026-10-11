@@ -21,10 +21,12 @@ Prefer no plugin? The same tools are available as a custom remote connector — 
 
 The teaching skill works immediately, with no account.
 
-The dictionary tools require a **free** 2hongo account. On the first tool call Claude opens the
-2hongo authorization page; sign in or create an account, approve the connection, and Claude
-resumes what you asked for. There is no subscription step and no upgrade prompt in that flow —
-an existing paid subscription is simply recognized.
+Every 2hongo tool, the dictionary included, requires a **free** 2hongo account; until the server
+is connected, Claude sees no 2hongo tools at all. Connect it from `/plugin` (or the connector
+settings in Claude): the 2hongo authorization page opens, you sign in or create an account and
+approve the connection. There is no subscription step and no upgrade prompt in that flow — an
+existing paid subscription is simply recognized. A connection lasts 30 days, after which you
+connect again.
 
 The connection uses OAuth 2.1 with PKCE. Access tokens are short-lived and limited to the
 permissions you approved. To end the connection, revoke it on 2hongo under Account Settings >
@@ -97,8 +99,10 @@ recording, and leaves the link out otherwise.
 
 ## Troubleshooting
 
-- **"Connect a free 2hongo account"** — the connection lapsed or was revoked. Re-authorize the
-  plugin from `/plugin`, or re-add the connector.
+- **"Connect a free 2hongo account", or Claude says it can't reach 2hongo** — the server isn't
+  connected, the 30-day connection lapsed, or it was revoked. Re-authorize the plugin from
+  `/plugin`, or reconnect the connector. Setup steps for each app:
+  [2hongo.com/en/help/ai-assistants](https://www.2hongo.com/en/help/ai-assistants#connect).
 - **A word isn't found** — Claude resolves conjugated forms to the dictionary form before looking
   a word up, but it can miss. Ask it to search the dictionary form directly — 見に行った → 行く.
 - **Claude answers without consulting 2hongo** — that is the skill working as designed for generic

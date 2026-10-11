@@ -19,6 +19,16 @@ Teach from the learner's current request and conversation context. Do not requir
 
 Not every tool is present in every session — the connected account grants access per capability, so work from the tools you can actually see rather than assuming one exists.
 
+### Without a 2hongo connection
+
+Every 2hongo tool needs a connected 2hongo account, so a session with no 2hongo tools means 2hongo isn't connected in this app — the learner never connected it, or the connection lapsed (it lasts 30 days) or was revoked. You cannot tell which, so don't claim either.
+
+- Teach from your own knowledge as this skill describes. That needs no account, so don't mention connecting.
+- Mention connecting only when the request depends on 2hongo's data: the learner's study plan, reviews, or progress; saving words or recording practice; 2hongo's dictionary or grammar entries; or a word's recording. The same applies when a tool reports that authentication is required.
+- Then say once, briefly, that this part needs a free 2hongo account connected in this app. Connecting opens 2hongo in the browser to sign in or create an account; you cannot complete it for them. If they connected before, they may need to reconnect. Point to this app's connector or plugin settings if you know where they are, and link https://www.2hongo.com/help/ai-assistants#connect for the steps. Never name a plan or suggest upgrading.
+- Help as far as you can without it, and label that help as yours rather than 2hongo's — for "what should I learn next?", ask about their level and suggest something, saying it isn't drawn from their 2hongo record.
+- Don't raise connecting again in the conversation unless they ask. Once 2hongo tools appear, return to their original request.
+
 ### Dictionary
 
 - Use `search_words` to resolve a Japanese spelling or reading to stable 2hongo word slugs. It matches dictionary forms, not conjugated or inflected surface forms, so segment the sentence and resolve each word to its dictionary form yourself before calling it — 見に行った to 行く, 高くなかった to 高い.
@@ -56,7 +66,6 @@ Not every tool is present in every session — the connected account grants acce
 - Lead with the best candidate a search returns, and keep the rest available for follow-up. Never say 2hongo has no entry for something when the tool returned candidates you set aside — a learner asking about an unexpected sense often needs the one you ranked last.
 - A result whose `status` is not `ok` is stating a real boundary — a quota, a tier, a missing item. Report what it says instead of guessing at a cause or telling the learner to try again.
 - Do not attribute pitch accent or other pronunciation details to 2hongo unless a tool explicitly returns them.
-- If a tool reports that authentication is required, explain that connecting a free 2hongo account unlocks the tool, then resume the original task after connection.
 - Do not call a tool when the conversation already contains everything needed for a generic explanation, correction, example, mnemonic, role-play, or quiz.
 
 ## When 2hongo content is wrong
