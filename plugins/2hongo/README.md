@@ -64,7 +64,7 @@ I wrote 「私は日本語を勉強しました三年間」. Correct it and expl
 | `get_progress_insights`   | Recent activity, vocabulary accuracy trends, learning signals, and a concrete next step                                                       |
 | `get_jlpt_readiness`      | Coverage of a JLPT level across 2hongo grammar, kanji, vocabulary, basics, and prerequisites                                                  |
 | `record_usage_evidence`   | A structured correct-use or error signal for a word or grammar sense the learner produced                                                     |
-| `update_learning_state`   | Saves a word or grammar sense to your reviews, or marks it known                                                                              |
+| `update_learning_state`   | Saves a word, grammar sense, kanji, or kana to your reviews, or marks it known                                                                |
 | `update_learner_settings` | Updates your declared level, goal, or daily study time after you confirm the values                                                           |
 | `update_learning_profile` | Replaces the learning profile after you approve the complete proposed text                                                                    |
 | `submit_practice_results` | Grades authored answers and records due-item results, including misses                                                                        |
