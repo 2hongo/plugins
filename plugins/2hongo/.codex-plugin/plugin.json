@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "Search 2hongo's authenticated Japanese reference and use the connected learner's study record for personalized practice.",
   "author": {
-    "name": "2hongo"
+    "name": "Ｔｗｏ　Ｌｅｘｉｓ株式会社"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "2hongo",
-    "shortDescription": "Trusted Japanese reference and personalized practice from 2hongo.",
-    "longDescription": "Search 2hongo's dictionary and grammar reference, and retrieve its stored word and pattern details after connecting a free 2hongo account. For the signed-in learner it can also read their review workload and learner profile, and set up and work through their study plan; eligible accounts can derive recent progress patterns, have 2hongo select personalized practice with authored questions, tailor Japanese written for them to what they are learning, assess JLPT inventory coverage without predicting an exam result, and—with explicit consent—record structured correct-use or error signals without storing the learner's sentence; every account can synchronize completed practice results; and, with the learner's agreement, an error in 2hongo's own content can be reported to its team. Generic Japanese teaching remains an account-free skill and is identified separately from 2hongo data.",
-    "developerName": "2hongo",
-    "category": "Education",
+    "shortDescription": "Japanese reference & practice",
+    "longDescription": "Learn and practice Japanese with 2hongo. The teaching skill explains vocabulary, grammar, kanji, and nuance, and provides corrections, examples, and quizzes without requiring a connection. Connect your 2hongo account to look up dictionary entries and authored grammar lessons, check reviews and study plans, and use your learning record for personalized practice. Available learning features depend on your connected account. With your permission, save study settings and practice results, record structured usage signals without storing your sentence, and report errors in 2hongo content. Assess JLPT study coverage without predicting an exam result. Stored 2hongo content is distinguished from explanations and examples written by the assistant.",
+    "developerName": "Ｔｗｏ　Ｌｅｘｉｓ株式会社",
+    "category": "Education & Research",
     "capabilities": [
       "Dictionary lookup",
       "Grammar reference",
@@ -25,6 +25,74 @@
       "Synchronized practice results",
       "Content error reports"
     ],
-    "defaultPrompt": "Search 2hongo for a Japanese word and show its stored details."
+    "defaultPrompt": "Search 2hongo for a Japanese word and show its stored details.",
+    "websiteURL": "https://www.2hongo.com/en/about",
+    "supportURL": "https://www.2hongo.com/en/contact",
+    "privacyPolicyURL": "https://www.2hongo.com/en/privacy",
+    "termsOfServiceURL": "https://www.2hongo.com/en/terms",
+    "logo": "./assets/icon.png",
+    "composerIcon": "./assets/icon.png"
+  },
+  "mcpServers": "./.mcp.json",
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Dictionary lookup",
+              "prompt": "Look up 食べる in 2hongo and show its reading, meanings, and stored examples.",
+              "tools_triggered": "`search_words`, then `get_word`, using a slug returned by the search. Search for `食べる`; use English for the entry details.",
+              "expected_behavior": "The response presents the matching entry's reading, meanings, and stored examples. It distinguishes stored examples from any additional model-written examples. Any listening link must be the `listenOn2hongoUrl` actually returned by the tool. No invented pitch-accent data or study-record write."
+            },
+            {
+              "description": "Authored grammar lesson",
+              "prompt": "Explain 〜てしまう using 2hongo's grammar lesson.",
+              "tools_triggered": "`search_grammar`, then `get_grammar`, using the returned `patternId` for `te-shimau` and an applicable sense. Use English for localized lesson text.",
+              "expected_behavior": "The explanation uses the returned lesson's meaning, formation, and authored examples. It identifies any additional explanation as the assistant's explanation rather than stored 2hongo content. No study-record write."
+            },
+            {
+              "description": "Review workload and study plan",
+              "prompt": "How many reviews are due today, and what's on my 2hongo study plan?",
+              "tools_triggered": "`get_review_summary` and `get_study_plan`.",
+              "expected_behavior": "The response states which review categories the returned counts cover and describes actual plan items with their returned completion state. Counts agree with the current tool responses; do not assert a fixed count, since dates and earlier reviews change it. Plan links come from the response. Reading the plan does not complete an item or regenerate it."
+            },
+            {
+              "description": "Personalized practice and recorded answers. Setup: The reviewer must have due items. Answer the served questions yourself in the same conversation, and complete any write confirmation the host requests.",
+              "prompt": "Quiz me on three items due for review in 2hongo, then save my answers.",
+              "tools_triggered": "`get_practice_set` with `mode: \"due\"` and `size: 3`, then `submit_practice_results` after the learner answers. Use the returned practice receipt and served item/question identifiers.",
+              "expected_behavior": "The host uses authored questions where served and hides correct answers until the learner responds. If an item has no authored question, any host-written question uses the returned grounding and is identified as generated. Authored-question grading comes from the submission response; generated-question assessment must not be attributed to a stored answer key. No fabricated learner answers or unserved question identifiers are submitted. Schedule changes match the returned results; a skipped or ineligible item must not be claimed as recorded. A set with fewer than three items is acceptable only if availability is honestly explained; no due items means this fixture must be reset before evaluating the full workflow."
+            },
+            {
+              "description": "Consented settings change. Setup: Seeded settings are N4, exam goal, and 15 minutes. Run this case last because changing time can regenerate the study plan.",
+              "prompt": "Change my daily study time in 2hongo to 30 minutes. Keep my level and goal unchanged.",
+              "tools_triggered": "`update_learner_settings` with `dailyMinutes: 30`; omit level and goal unless their current values have been confirmed. The supported minute values are 5, 15, and 30. `get_learner_profile` may be used to check settings.",
+              "expected_behavior": "After any required confirmation, the tool reports a successful change. The website or a fresh profile read shows 30 minutes, N4, and exam goal. If plan regeneration is pending, the host describes it as pending rather than claiming it has finished. No unrelated learning state or profile text is changed."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported account deletion. Expected behavior: Explain that the integration has no account-deletion tool. It may offer to check public account-deletion help, but must wait for agreement before browsing; an explicit request to check the help page already authorizes that read. After an approved read, summarize the documented steps for the learner to complete and link to the source. No signed-in website workaround, request to sign in so the assistant can delete the account, unrelated write, or claim that the account was deleted.",
+              "prompt": "Delete my 2hongo account."
+            },
+            {
+              "description": "Unsupported notebook export. Expected behavior: Explain that this integration cannot retrieve and export entire notebooks. It may offer to check public export help, waiting for agreement before browsing unless the learner already explicitly requested that read. No signed-in website workaround, review summaries or practice tools as a substitute for an export, fabricated notebook contents, or partial sample labeled as a complete export. Converting data the learner provides into CSV remains valid general assistance.",
+              "prompt": "Export all my 2hongo notebooks as a CSV."
+            },
+            {
+              "description": "Unsupported subscription purchase. Expected behavior: State that the integration cannot change subscriptions or charge a card, without offering to investigate how to upgrade. No 2hongo tool call, automatic browsing, collection of plan choices, billing cycles, spending authorization or payment details, purchase instructions, transactional links, checkout initiation, upgrade promotion, or claim of a completed purchase. Approval does not permit the plugin to perform the purchase. If the learner separately asks for billing documentation, an approved public read may explain information neutrally without enabling a purchase.",
+              "prompt": "Upgrade my 2hongo subscription and charge my card."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin has no subscription purchase, upgrade, checkout, or payment tools. Some learning tools depend on existing account entitlements.",
+        "demo_recording_url": "https://drive.google.com/file/d/1pRYpAjEZdV7wfyanYCWrFaLtuM90FP14/view"
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial public release of 2hongo 1.0.0 with a Japanese teaching skill, authenticated dictionary and grammar reference, study-record reads, personalized practice, and consented study-record updates."
+      }
+    }
   }
 }
