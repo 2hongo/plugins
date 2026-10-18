@@ -9,9 +9,9 @@
     {
       "name": "2hongo",
       "source": "./plugins/2hongo",
-      "description": "Teach and practice Japanese, grounded in 2hongo's dictionary and grammar reference.",
+      "description": "Study Japanese in Claude with 2hongo's dictionary, N5–N1 grammar reference, and your own study record: review what's due, practice your weak spots, track your JLPT coverage, and get Japanese written at your level. Free to connect; practice sets, JLPT coverage, and level-matched writing need the Plus plan.",
       "category": "education",
-      "tags": ["japanese", "language-learning", "dictionary"]
+      "tags": ["japanese", "learn-japanese", "language-learning", "dictionary", "grammar", "jlpt"]
     }
   ]
 }

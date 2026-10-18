@@ -2,7 +2,7 @@
   "name": "2hongo",
   "displayName": "2hongo",
   "version": "1.0.0",
-  "description": "Teach and practice Japanese, grounded in 2hongo's dictionary, grammar reference, and the connected learner's study record. Search trusted content, derive progress insights, assess JLPT inventory coverage, select personalized practice, record consented usage evidence, and synchronize results.",
+  "description": "Study Japanese in Claude with 2hongo's dictionary, N5–N1 grammar reference, and your own study record: review what's due, practice your weak spots, track your JLPT coverage, and get Japanese written at your level. Free to connect; practice sets, JLPT coverage, and level-matched writing need the Plus plan.",
   "author": {
     "name": "Two Lexis Co., Ltd.",
     "url": "https://www.2hongo.com"
@@ -14,5 +14,14 @@
   "supportUrl": "https://www.2hongo.com/contact",
   "privacyPolicyUrl": "https://www.2hongo.com/privacy",
   "termsOfServiceUrl": "https://www.2hongo.com/terms",
-  "keywords": ["japanese", "language-learning", "dictionary", "jlpt", "vocabulary"]
+  "keywords": [
+    "japanese",
+    "learn-japanese",
+    "language-learning",
+    "dictionary",
+    "grammar",
+    "kanji",
+    "jlpt",
+    "vocabulary"
+  ]
 }
